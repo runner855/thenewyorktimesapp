@@ -1,0 +1,48 @@
+.email {
+  margin: 1em 0em 1em 0em;
+}
+
+.name,
+.surname {
+  margin: 1em 0em 1em 0em;
+}
+
+input {
+  border: solid rgb(7, 7, 7) 0.2em;
+  border-radius: 2em;
+  height: 1.4em;
+  width: 11em;
+  padding: 0.4em;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+:where(.css-dev-only-do-not-override-1i9hnpv) a {
+  color: #000;
+}
+
+:where(.css-dev-only-do-not-override-1i9hnpv) a:hover {
+  color: #000;
+}
+
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-btn-primary {
+  color: #fff;
+  background-color: #000;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+}
+
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-btn-primary:not(
+    :disabled
+  ):hover {
+  color: #fff;
+  background-color: #000;
+}
+
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-btn-default:not(
+    :disabled
+  ):hover {
+  color: #000;
+  border-color: #000;
+}
