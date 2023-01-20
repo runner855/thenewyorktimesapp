@@ -75,7 +75,9 @@ export const NavBar = () => {
               }}
             >
               <p>
-                <a className="signup">{MODAL_SIGNUPLINK_LABEL}</a>
+                <Link to="#" className="signup">
+                  {MODAL_SIGNUPLINK_LABEL}
+                </Link>
               </p>
             </div>
           </Modal>

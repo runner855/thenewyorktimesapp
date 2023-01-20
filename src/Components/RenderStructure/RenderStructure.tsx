@@ -19,7 +19,7 @@ export const RenderStructure = ({ article }: LayoutProps) => {
               <div
                 className="card_container"
                 key={index}
-                onClick={() => navigate(`/datailedarticle/${params.page}`)}
+                onClick={() => navigate(`/articledetails/${params.page}`)}
               >
                 <div className="text_content">
                   <div className="title">{item.title}</div>
