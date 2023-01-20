@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "NYT";
+  src: url("/src/Fonts/Chomsky.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.heading {
+  font-weight: 800;
+  text-align: center;
+  width: 100%;
+  font-size: 3em;
+  border-bottom: solid 1px #000;
+  font-family: NYT;
+}
+
+.header {
+  border-bottom: double 6px #000;
+}
+
+.date {
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.4em;
+  width: 100%;
+  margin-top: 1em;
+}
+
+.date_desc {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.3em;
+  width: 100%;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+}
+
+.heading .nyt_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
