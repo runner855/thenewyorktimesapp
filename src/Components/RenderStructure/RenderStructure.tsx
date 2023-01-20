@@ -20,7 +20,23 @@ export const RenderStructure = ({ article }: LayoutProps) => {
                 className="card_container"
                 key={index}
                 onClick={() => navigate(`/datailedarticle/${params.page}`)}
-              ></div>
+              >
+                <div className="text_content">
+                  <div className="title">{item.title}</div>
+                  <div className="article_content">{item.abstract}</div>
+                  <div className="article_author">{item.byline}</div>
+                </div>
+                <div className="image_container">
+                  <img
+                    className="article_image"
+                    src={item.multimedia[0].url}
+                    alt="article_image"
+                  />
+                  <div className="image_caption">
+                    {item.multimedia[0].caption}
+                  </div>
+                </div>
+              </div>
             );
           })}
       </div>

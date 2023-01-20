@@ -21,6 +21,7 @@ export interface ArticlesProps {
   byline: string;
   created_date: string;
   section: string;
+  title: string;
   item_type: string;
   multimedia: MultimediaProps[];
 }

@@ -20,6 +20,8 @@ export const PageStructure = () => {
       );
     });
   }, [params]);
+
+  console.log(article);
   return (
     <div>
       <RenderStructure article={article} />
