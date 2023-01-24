@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useInsertionEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../ArticleDetails/ArticleDetails.css";
 import { ArticlesProps } from "../../ Types/Apptypes";
 import ApiCall from "../../API/ApiCall";

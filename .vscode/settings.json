@@ -1,14 +1,19 @@
 {
     "cSpell.words": [
+        "accountdetails",
         "antd",
         "Apptypes",
         "articledetails",
         "currentdate",
+        "isloggedin",
+        "noaccount",
+        "nwfa",
         "SIGNUP",
         "SIGNUPLINK",
         "SINGUP",
         "Strucure",
         "topstories",
-        "truetype"
+        "truetype",
+        "userdata"
     ]
 }

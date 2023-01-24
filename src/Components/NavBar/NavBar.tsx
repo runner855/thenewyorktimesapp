@@ -8,15 +8,28 @@ import {
   MODAL_SIGNUP_LABEL,
   MODAL_SIGNUPLINK_LABEL,
 } from "../../Constants/dictionary";
-import { Modal } from "antd";
+import { Modal, Select } from "antd";
 import { LoginForm } from "../LoginForm/LoginForm";
-import { NavBarElements } from "../../Utilities/Utility";
+import { NavBarElements, UsersDatabase } from "../../Utilities/Utility";
 import { Link } from "react-router-dom";
+import { getValue } from "@testing-library/user-event/dist/utils";
+
+type UserDetailsProps = {
+  id: string;
+  name: string;
+  surname: string;
+  email: string;
+  address: string;
+};
 
 export const NavBar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showContent, setShowContent] = useState<string>("");
+  const [userName, setUserName] = useState<string | undefined>();
+  const [isloggedin, setIsLoggedIn] = useState<boolean>(false);
+  const [userEmail, setUserEmail] = useState<string>();
+  const [userAddress, setUserAddress] = useState<string>();
 
   const handleShowNavBar = () => {
     setShowNavBar(!showNavBar);
@@ -33,6 +46,7 @@ export const NavBar = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   return (
     <nav className="navbar">
       <div className="container">
@@ -47,6 +61,7 @@ export const NavBar = () => {
           >
             {MODAL_LOGIN_LABEL}
           </FaUser>
+          <div className="username">{userName}</div>
           <Modal
             title="Login"
             open={isModalOpen}
@@ -55,12 +70,41 @@ export const NavBar = () => {
           >
             {showContent === ModalContentEnum.LOGIN ? (
               <div className="login_select">
-                <select className="form-control">
-                  <h4>Choose Your Account</h4>
-                  <option>John</option>
-                  <option>Mike</option>
-                  <option>Mario</option>
-                </select>
+                <Select
+                  className="form-control"
+                  placeholder="select"
+                  style={{ width: 130 }}
+                  onChange={(val: string) => setUserName(val)}
+                  onSelect={() =>
+                    UsersDatabase &&
+                    UsersDatabase.map((item, index) => {
+                      setIsLoggedIn(true);
+                      return setUserAddress(item.address);
+                    })
+                  }
+                  value={userName}
+                  options={
+                    UsersDatabase &&
+                    UsersDatabase.map((username) => ({
+                      label: `${username.name} ${username.surname}`,
+                      value: `${username.name} ${username.surname}`,
+                    }))
+                  }
+                />
+                {isloggedin && (
+                  <div className="accountdetails_container">
+                    Account Details:
+                    <div className="accountdetails_container_username">
+                      User: {userName}
+                    </div>
+                    <div className="accountdetails_container_email">
+                      Email: {userEmail}
+                    </div>
+                    <div className="accountdetails_container_address">
+                      Address: {userAddress}
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <>

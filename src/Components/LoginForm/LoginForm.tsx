@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ReactNode, useState } from "react";
+import { UsersDatabase } from "../../Utilities/Utility";
 import "../LoginForm/LoginForm.css";
 
 export const LoginForm = () => {
@@ -16,11 +17,14 @@ export const LoginForm = () => {
       <div className="surname">
         <input type="surname" placeholder="surname" />
       </div>
+      <div className="email">
+        <input type="email" placeholder="email" />
+      </div>
       <div className="address">
         <input type="address" placeholder="address" />
       </div>
-      <div className="email">
-        <input type="email" placeholder="email" />
+      <div className="button-container">
+        <input type="submit" placeholder="hello" />
       </div>
     </form>
   );
