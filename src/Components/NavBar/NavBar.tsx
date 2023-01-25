@@ -13,6 +13,7 @@ import { Modal, Select } from "antd";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { NavBarElements, UsersDatabase } from "../../Utilities/Utility";
 import { Link } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
 
 export const NavBar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -20,8 +21,11 @@ export const NavBar = () => {
   const [showContent, setShowContent] = useState<string>("");
   const [userName, setUserName] = useState<string | undefined>();
   const [isloggedin, setIsLoggedIn] = useState<boolean>(false);
-  const [userEmail, setUserEmail] = useState<string>();
-  const [userAddress, setUserAddress] = useState<string>();
+  const [name, setName] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [names, setNames] = useState(["Alice", "Bob"]);
 
   const handleShowNavBar = () => {
     setShowNavBar(!showNavBar);
@@ -37,6 +41,10 @@ export const NavBar = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const handleClick = () => {
+    setNames((current) => [...current, "Mike", "Jane"]);
   };
 
   return (
@@ -87,14 +95,19 @@ export const NavBar = () => {
               </div>
             ) : (
               <>
-                <LoginForm />
+                <LoginForm
+                  name={name}
+                  setName={(inputName) => setName(inputName)}
+                  surname={surname}
+                  setSurname={(inputSurname) => setSurname(inputSurname)}
+                  email={email}
+                  setEmail={(inputEmail) => setEmail(inputEmail)}
+                  address={address}
+                  setAddress={(inputAddress) => setAddress(inputAddress)}
+                />
               </>
             )}
-
             <div className="noaccount">{MODAL_SIGNUP_LABEL}</div>
-            <div className="logout_container" onClick={() => setUserName(" ")}>
-              {MODAL_LOGOUTLINK_LABEL}
-            </div>
             <div
               className="singup_logout_buttons"
               onClick={() => {
@@ -102,11 +115,12 @@ export const NavBar = () => {
               }}
             >
               <div className="signup_container">
-                <Link to="#" className="signup">
+                <Link className="signup" to="#">
                   {MODAL_SIGNUPLINK_LABEL}
                 </Link>
               </div>
             </div>
+            <MdLogout className="logout_icon" onClick={() => setUserName("")} />
           </Modal>
         </div>
         <div className="menu-icon" onClick={handleShowNavBar}>

@@ -5,8 +5,11 @@
         "Apptypes",
         "articledetails",
         "currentdate",
+        "Dunwin",
         "isloggedin",
         "LOGOUTLINK",
+        "Lungomare",
+        "Margarette",
         "noaccount",
         "nwfa",
         "SIGNUP",
@@ -15,6 +18,7 @@
         "Strucure",
         "topstories",
         "truetype",
-        "userdata"
+        "userdata",
+        "uuidv"
     ]
 }

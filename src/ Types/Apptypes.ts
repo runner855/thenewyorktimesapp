@@ -11,6 +11,7 @@ export enum LanguageEnum {
 export enum ModalContentEnum {
   LOGIN = "Login",
   REGISTER = "Register",
+  LOGOUT = "Logout",
 }
 
 export interface ArticlesProps {
@@ -35,4 +36,11 @@ export interface MultimediaProps {
   type: string;
   url: string;
   width: number;
+}
+
+export interface UserDataStructureProps {
+  name: string;
+  surname: string;
+  email: string;
+  address: string;
 }

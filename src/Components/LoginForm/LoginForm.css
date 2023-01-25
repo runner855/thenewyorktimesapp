@@ -14,16 +14,6 @@ input {
   width: 11em;
   padding: 0.4em;
 }
-input[type="submit"] {
-  margin-top: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  background: #01d28e;
-  border: 1px solid #01d28e;
-  color: #fff;
-  padding: 10px 20px;
-  height: 40px;
-}
 
 input:focus {
   outline: none !important;
@@ -55,4 +45,19 @@ input:focus {
   ):hover {
   color: #000;
   border-color: #000;
+}
+
+.clear_btn {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+:where(.css-dev-only-do-not-override-1n7nwfa) a:hover {
+  color: #000;
+  background-color: #fff;
+  border: solid 1px #000;
+}
+
+.signup {
+  padding: 4px;
 }
