@@ -7,20 +7,12 @@ import {
   MODAL_LOGIN_LABEL,
   MODAL_SIGNUP_LABEL,
   MODAL_SIGNUPLINK_LABEL,
+  MODAL_LOGOUTLINK_LABEL,
 } from "../../Constants/dictionary";
 import { Modal, Select } from "antd";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { NavBarElements, UsersDatabase } from "../../Utilities/Utility";
 import { Link } from "react-router-dom";
-import { getValue } from "@testing-library/user-event/dist/utils";
-
-type UserDetailsProps = {
-  id: string;
-  name: string;
-  surname: string;
-  email: string;
-  address: string;
-};
 
 export const NavBar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -75,13 +67,7 @@ export const NavBar = () => {
                   placeholder="select"
                   style={{ width: 130 }}
                   onChange={(val: string) => setUserName(val)}
-                  onSelect={() =>
-                    UsersDatabase &&
-                    UsersDatabase.map((item, index) => {
-                      setIsLoggedIn(true);
-                      return setUserAddress(item.address);
-                    })
-                  }
+                  onSelect={() => setIsLoggedIn(true)}
                   value={userName}
                   options={
                     UsersDatabase &&
@@ -93,15 +79,8 @@ export const NavBar = () => {
                 />
                 {isloggedin && (
                   <div className="accountdetails_container">
-                    Account Details:
                     <div className="accountdetails_container_username">
-                      User: {userName}
-                    </div>
-                    <div className="accountdetails_container_email">
-                      Email: {userEmail}
-                    </div>
-                    <div className="accountdetails_container_address">
-                      Address: {userAddress}
+                      {userName}
                     </div>
                   </div>
                 )}
@@ -113,16 +92,20 @@ export const NavBar = () => {
             )}
 
             <div className="noaccount">{MODAL_SIGNUP_LABEL}</div>
+            <div className="logout_container" onClick={() => setUserName(" ")}>
+              {MODAL_LOGOUTLINK_LABEL}
+            </div>
             <div
+              className="singup_logout_buttons"
               onClick={() => {
                 setShowContent(ModalContentEnum.REGISTER);
               }}
             >
-              <p>
+              <div className="signup_container">
                 <Link to="#" className="signup">
                   {MODAL_SIGNUPLINK_LABEL}
                 </Link>
-              </p>
+              </div>
             </div>
           </Modal>
         </div>

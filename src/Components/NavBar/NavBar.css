@@ -128,7 +128,7 @@ body {
   background-color: #000;
   color: #fff;
   font-weight: 600;
-  padding: 3px;
+  padding: 0.4em;
   border-radius: 6px;
 }
 :where(.css-dev-only-do-not-override-1n7nwfa) a:hover {
@@ -170,4 +170,22 @@ body {
   ):not(.ant-select-customize-input):not(.ant-pagination-size-changer)
   .ant-select-selector {
   border-color: #000 !important;
+}
+
+.logout_container {
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.4em;
+  border-radius: 6px;
+  width: 57px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.logout_container:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+  border: solid 1px #000;
 }

@@ -6,6 +6,7 @@
         "articledetails",
         "currentdate",
         "isloggedin",
+        "LOGOUTLINK",
         "noaccount",
         "nwfa",
         "SIGNUP",
