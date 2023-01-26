@@ -7,13 +7,13 @@ import {
   MODAL_LOGIN_LABEL,
   MODAL_SIGNUP_LABEL,
   MODAL_SIGNUPLINK_LABEL,
-  MODAL_LOGOUTLINK_LABEL,
 } from "../../Constants/dictionary";
 import { Modal, Select } from "antd";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { NavBarElements, UsersDatabase } from "../../Utilities/Utility";
 import { Link } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -25,7 +25,8 @@ export const NavBar = () => {
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
-  const [names, setNames] = useState(["Alice", "Bob"]);
+
+  const navigate = useNavigate();
 
   const handleShowNavBar = () => {
     setShowNavBar(!showNavBar);
@@ -43,24 +44,38 @@ export const NavBar = () => {
     setIsModalOpen(false);
   };
 
-  const handleClick = () => {
-    setNames((current) => [...current, "Mike", "Jane"]);
+  const handleLogOut = () => {
+    setUserName("");
+    setIsLoggedIn(false);
   };
 
   return (
     <nav className="navbar">
       <div className="container">
         <div className="logo">
-          <FaUser
-            className="login"
-            type="primary"
-            onClick={() => {
-              setIsModalOpen(true);
-              setShowContent(ModalContentEnum.LOGIN);
-            }}
-          >
-            {MODAL_LOGIN_LABEL}
-          </FaUser>
+          {isloggedin ? (
+            isloggedin && (
+              <FaUser
+                className="account"
+                type="primary"
+                onClick={() => {
+                  navigate(`accountdetails`);
+                }}
+              >
+                {MODAL_LOGIN_LABEL}
+              </FaUser>
+            )
+          ) : (
+            <h1
+              className="login"
+              onClick={() => {
+                setIsModalOpen(true);
+                setShowContent(ModalContentEnum.LOGIN);
+              }}
+            >
+              Login/Register
+            </h1>
+          )}
           <div className="username">{userName}</div>
           <Modal
             title="Login"
@@ -120,7 +135,7 @@ export const NavBar = () => {
                 </Link>
               </div>
             </div>
-            <MdLogout className="logout_icon" onClick={() => setUserName("")} />
+            <MdLogout className="logout_icon" onClick={handleLogOut} />
           </Modal>
         </div>
         <div className="menu-icon" onClick={handleShowNavBar}>

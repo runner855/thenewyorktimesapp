@@ -46,12 +46,6 @@
   -webkit-line-clamp: 3;
 }
 
-.readmore {
-  font-size: 0.6em;
-}
-.readmore:hover {
-  cursor: pointer;
-}
 .image_container {
   margin-left: 1em;
 }

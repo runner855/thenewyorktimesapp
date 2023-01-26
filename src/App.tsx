@@ -5,6 +5,7 @@ import { AppUrls } from "./ Types/Apptypes";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { PageStructure } from "./Components/PageStructure/PageStructure";
 import { ArticleDetails } from "./Components/ArticleDetails/ArticleDetails";
+import { AccountDetails } from "./Components/AccountDetails/AccountDetails";
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
         <Route path="/" element={<Navigate to={AppUrls.HOME} />} />
         <Route path="/:page" element={<PageStructure />} />
         <Route path="/articledetails/:page" element={<ArticleDetails />} />
+        <Route path="/accountdetails/:id" element={<AccountDetails />} />
       </Routes>
     </div>
   );

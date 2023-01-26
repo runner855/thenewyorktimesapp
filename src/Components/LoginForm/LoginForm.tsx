@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../LoginForm/LoginForm.css";
 import { UsersDatabase } from "../../Utilities/Utility";
 import { Button } from "antd";
-
-const { v4: uuidv4 } = require("uuid");
+import {
+  MODAL_SUBMIT_LABEL,
+  MODAL_CLEAR_LABEL,
+} from "../../Constants/dictionary";
 
 type SignupFormProps = {
   name: string;
@@ -14,11 +16,6 @@ type SignupFormProps = {
   setEmail: (email: string) => void;
   address: string;
   setAddress: (address: string) => void;
-};
-
-type ArtistsProps = {
-  name: string | undefined;
-  city: string | undefined;
 };
 
 export const LoginForm = ({
@@ -38,9 +35,11 @@ export const LoginForm = ({
       email: `${email}`,
       address: `${address}`,
     });
+    setName("");
+    setSurname("");
+    setEmail("");
+    setAddress("");
   };
-
-  console.log(UsersDatabase);
 
   return (
     <form>
@@ -83,7 +82,7 @@ export const LoginForm = ({
         />
       </div>
       <Button className="submit_btn" type="primary" onClick={handleClick}>
-        Sumbit
+        {MODAL_SUBMIT_LABEL}
       </Button>
 
       <Button
@@ -96,7 +95,7 @@ export const LoginForm = ({
           setAddress("");
         }}
       >
-        Clear
+        {MODAL_CLEAR_LABEL}
       </Button>
     </form>
   );

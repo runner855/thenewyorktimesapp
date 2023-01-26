@@ -12,6 +12,8 @@ export enum ModalContentEnum {
   LOGIN = "Login",
   REGISTER = "Register",
   LOGOUT = "Logout",
+  SUBMIT = "Submit",
+  CLEAR = "Clear",
 }
 
 export interface ArticlesProps {
