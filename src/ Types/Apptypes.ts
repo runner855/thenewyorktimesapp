@@ -14,9 +14,11 @@ export enum ModalContentEnum {
   LOGOUT = "Logout",
   SUBMIT = "Submit",
   CLEAR = "Clear",
+  ACCOUNT_DETAILS = "Account Details",
 }
 
 export interface ArticlesProps {
+  id: string;
   copyright: string;
   last_updated: string;
   num_results: number;
@@ -41,6 +43,7 @@ export interface MultimediaProps {
 }
 
 export interface UserDataStructureProps {
+  id: string;
   name: string;
   surname: string;
   email: string;

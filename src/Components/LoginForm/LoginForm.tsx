@@ -6,6 +6,7 @@ import {
   MODAL_SUBMIT_LABEL,
   MODAL_CLEAR_LABEL,
 } from "../../Constants/dictionary";
+const { v4: uuidv4 } = require("uuid");
 
 type SignupFormProps = {
   name: string;
@@ -28,8 +29,11 @@ export const LoginForm = ({
   address,
   setAddress,
 }: SignupFormProps) => {
+  const [userDetails, setUserDetails] = useState<string>("");
+
   const handleClick = () => {
     UsersDatabase.push({
+      id: uuidv4(),
       name: `${name}`,
       surname: `${surname}`,
       email: `${email}`,
@@ -39,6 +43,11 @@ export const LoginForm = ({
     setSurname("");
     setEmail("");
     setAddress("");
+    setUserDetails(`
+    ${name}
+     ${surname}
+     ${email}
+    ${address}`);
   };
 
   return (

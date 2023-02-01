@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../RenderStructure/RenderStructure.css";
 import { ArticlesProps } from "../../ Types/Apptypes";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ type LayoutProps = {
 export const RenderStructure = ({ article }: LayoutProps) => {
   const navigate = useNavigate();
   const params = useParams();
+
   return (
     <div className="container">
       <div className="article_data">
@@ -19,14 +20,16 @@ export const RenderStructure = ({ article }: LayoutProps) => {
               <div
                 className="card_container"
                 key={index}
-                onClick={() => navigate(`/articledetails/${params.page}`)}
+                onClick={() =>
+                  navigate(`/articledetails/${params.page}/${item.id}`)
+                }
               >
                 <div className="text_content">
                   <div className="title">{item.title}</div>
                   <div className="article_content">{item.abstract}</div>
                   <div className="article_author">{item.byline}</div>
                 </div>
-                <div className="image_container">
+                {/* <div className="image_container">
                   <img
                     className="article_image"
                     src={item.multimedia[0].url}
@@ -35,7 +38,7 @@ export const RenderStructure = ({ article }: LayoutProps) => {
                   <div className="image_caption">
                     {item.multimedia[0].caption}
                   </div>
-                </div>
+                </div> */}
               </div>
             );
           })}

@@ -9,6 +9,7 @@ const { v4: uuidv4 } = require("uuid");
 export const PageStructure = () => {
   const [article, setArticle] = useState<ArticlesProps[] | undefined>();
   const params = useParams();
+  console.log(params);
 
   useEffect(() => {
     ApiCall.get(
@@ -16,7 +17,10 @@ export const PageStructure = () => {
       {}
     ).then((res) => {
       setArticle(
-        res.data.results.map((item: any) => ({ ...item, id: uuidv4() }))
+        res.data.results.map((item: any) => ({
+          ...item,
+          id: uuidv4(),
+        }))
       );
     });
   }, [params]);

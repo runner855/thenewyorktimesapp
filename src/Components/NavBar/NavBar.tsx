@@ -14,6 +14,8 @@ import { NavBarElements, UsersDatabase } from "../../Utilities/Utility";
 import { Link } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { MODAL_ACCOUNTDETAILS_LABEL } from "../../Constants/dictionary";
+import { AccountDetails } from "../AccountDetails/AccountDetails";
 
 export const NavBar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -25,6 +27,25 @@ export const NavBar = () => {
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [filteredEmployees, setFilteredEmployees] = useState(UsersDatabase);
+
+  const filterByDepartment = (name: string) => {
+    setFilteredEmployees(
+      UsersDatabase.filter((user) => `${user.name} ${user.surname}` === name)
+    );
+  };
+  console.log(filteredEmployees);
+
+  const users = Array.from(
+    new Set(
+      UsersDatabase &&
+        UsersDatabase.map((user) => `${user.name} ${user.surname}`)
+    )
+  );
+
+  console.log(users);
+
+  const { v4: uuidv4 } = require("uuid");
 
   const navigate = useNavigate();
 
@@ -49,24 +70,34 @@ export const NavBar = () => {
     setIsLoggedIn(false);
   };
 
+  const handleChange = (e: any) => {
+    setUserName(e.target.value);
+    setIsLoggedIn(true);
+    filterByDepartment(e.target.value);
+  };
+
+  const handleClick = () => {
+    setIsModalOpen(true);
+    setShowContent(ModalContentEnum.ACCOUNT_DETAILS);
+  };
+
   return (
     <nav className="navbar">
       <div className="container">
         <div className="logo">
           {isloggedin ? (
-            isloggedin && (
-              <FaUser
-                className="account"
-                type="primary"
-                onClick={() => {
-                  navigate(`accountdetails`);
-                }}
-              >
-                {MODAL_LOGIN_LABEL}
-              </FaUser>
-            )
+            <FaUser
+              className="account"
+              type="primary"
+              onClick={() => {
+                setIsModalOpen(true);
+                setShowContent(ModalContentEnum.ACCOUNT_DETAILS);
+              }}
+            >
+              {MODAL_ACCOUNTDETAILS_LABEL}
+            </FaUser>
           ) : (
-            <h1
+            <div
               className="login"
               onClick={() => {
                 setIsModalOpen(true);
@@ -74,8 +105,9 @@ export const NavBar = () => {
               }}
             >
               Login/Register
-            </h1>
+            </div>
           )}
+
           <div className="username">{userName}</div>
           <Modal
             title="Login"
@@ -85,28 +117,28 @@ export const NavBar = () => {
           >
             {showContent === ModalContentEnum.LOGIN ? (
               <div className="login_select">
-                <Select
-                  className="form-control"
-                  placeholder="select"
-                  style={{ width: 130 }}
-                  onChange={(val: string) => setUserName(val)}
-                  onSelect={() => setIsLoggedIn(true)}
-                  value={userName}
-                  options={
-                    UsersDatabase &&
-                    UsersDatabase.map((username) => ({
-                      label: `${username.name} ${username.surname}`,
-                      value: `${username.name} ${username.surname}`,
-                    }))
-                  }
-                />
-                {isloggedin && (
-                  <div className="accountdetails_container">
-                    <div className="accountdetails_container_username">
-                      {userName}
+                <select onChange={handleChange}>
+                  <option value="">Select User</option>
+
+                  {users.map((selectedUser) => {
+                    return <option key={selectedUser}>{selectedUser}</option>;
+                  })}
+                </select>
+              </div>
+            ) : showContent === ModalContentEnum.ACCOUNT_DETAILS ? (
+              <div>
+                {filteredEmployees.map((user) => {
+                  const { id, name, surname, email, address } = user;
+                  return (
+                    <div key={id}>
+                      <div className="user">
+                        {name} {surname}
+                      </div>
+                      <div className="email">{email}</div>
+                      <div className="address">{address}</div>
                     </div>
-                  </div>
-                )}
+                  );
+                })}
               </div>
             ) : (
               <>
@@ -122,6 +154,7 @@ export const NavBar = () => {
                 />
               </>
             )}
+
             <div className="noaccount">{MODAL_SIGNUP_LABEL}</div>
             <div
               className="singup_logout_buttons"

@@ -14,11 +14,9 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Navigate to={AppUrls.HOME} />} />
         <Route path="/:page" element={<PageStructure />} />
-        <Route path="/articledetails/:page" element={<ArticleDetails />} />
-        <Route path="/accountdetails/:id" element={<AccountDetails />} />
+        <Route path="/articledetails/:page/:id" element={<ArticleDetails />} />
+        <Route path="/accountdetails" element={<AccountDetails />} />
       </Routes>
     </div>
   );
 };
-
-export default App;
