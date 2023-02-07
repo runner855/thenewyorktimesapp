@@ -17,6 +17,10 @@ type SignupFormProps = {
   setEmail: (email: string) => void;
   address: string;
   setAddress: (address: string) => void;
+  city: string;
+  setCity: (city: string) => void;
+  country: string;
+  setCountry: (country: string) => void;
 };
 
 export const LoginForm = ({
@@ -28,6 +32,10 @@ export const LoginForm = ({
   setEmail,
   address,
   setAddress,
+  city,
+  setCity,
+  country,
+  setCountry,
 }: SignupFormProps) => {
   const [userDetails, setUserDetails] = useState<string>("");
 
@@ -38,22 +46,29 @@ export const LoginForm = ({
       surname: `${surname}`,
       email: `${email}`,
       address: `${address}`,
+      city: `${city}`,
+      country: `${country}`,
     });
     setName("");
     setSurname("");
     setEmail("");
     setAddress("");
+    setCity("");
+    setCountry("");
     setUserDetails(`
     ${name}
      ${surname}
      ${email}
-    ${address}`);
+    ${address}
+    ${city}
+    ${country}`);
   };
 
   return (
     <form>
-      <div className="logo">
+      <div className="nyt_logo_container">
         <img
+          className="nyt_logo"
           src="https://developer.nytimes.com/files/poweredby_nytimes_200c.png?v=1583354208354"
           alt="logo"
         />
@@ -90,6 +105,22 @@ export const LoginForm = ({
           onChange={(e) => setAddress(e.target.value)}
         />
       </div>
+      <div className="city">
+        <input
+          type="city"
+          placeholder="city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+      </div>
+      <div className="country">
+        <input
+          type="country"
+          placeholder="country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
+      </div>
       <Button className="submit_btn" type="primary" onClick={handleClick}>
         {MODAL_SUBMIT_LABEL}
       </Button>
@@ -102,6 +133,8 @@ export const LoginForm = ({
           setSurname("");
           setEmail("");
           setAddress("");
+          setCity("");
+          setCountry("");
         }}
       >
         {MODAL_CLEAR_LABEL}

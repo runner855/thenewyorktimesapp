@@ -8,14 +8,12 @@ import {
   MODAL_SIGNUP_LABEL,
   MODAL_SIGNUPLINK_LABEL,
 } from "../../Constants/dictionary";
-import { Modal, Select } from "antd";
+import { Modal } from "antd";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { NavBarElements, UsersDatabase } from "../../Utilities/Utility";
 import { Link } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import { MODAL_ACCOUNTDETAILS_LABEL } from "../../Constants/dictionary";
-import { AccountDetails } from "../AccountDetails/AccountDetails";
 
 export const NavBar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -27,6 +25,8 @@ export const NavBar = () => {
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
   const [filteredEmployees, setFilteredEmployees] = useState(UsersDatabase);
 
   const filterByDepartment = (name: string) => {
@@ -34,7 +34,6 @@ export const NavBar = () => {
       UsersDatabase.filter((user) => `${user.name} ${user.surname}` === name)
     );
   };
-  console.log(filteredEmployees);
 
   const users = Array.from(
     new Set(
@@ -43,11 +42,7 @@ export const NavBar = () => {
     )
   );
 
-  console.log(users);
-
   const { v4: uuidv4 } = require("uuid");
-
-  const navigate = useNavigate();
 
   const handleShowNavBar = () => {
     setShowNavBar(!showNavBar);
@@ -86,14 +81,7 @@ export const NavBar = () => {
       <div className="container">
         <div className="logo">
           {isloggedin ? (
-            <FaUser
-              className="account"
-              type="primary"
-              onClick={() => {
-                setIsModalOpen(true);
-                setShowContent(ModalContentEnum.ACCOUNT_DETAILS);
-              }}
-            >
+            <FaUser className="account" type="primary" onClick={handleClick}>
               {MODAL_ACCOUNTDETAILS_LABEL}
             </FaUser>
           ) : (
@@ -128,14 +116,17 @@ export const NavBar = () => {
             ) : showContent === ModalContentEnum.ACCOUNT_DETAILS ? (
               <div>
                 {filteredEmployees.map((user) => {
-                  const { id, name, surname, email, address } = user;
+                  const { id, name, surname, email, address, city, country } =
+                    user;
                   return (
-                    <div key={id}>
+                    <div className="account_details_container" key={id}>
                       <div className="user">
                         {name} {surname}
                       </div>
                       <div className="email">{email}</div>
                       <div className="address">{address}</div>
+                      <div className="city">{city}</div>
+                      <div className="country">{country}</div>
                     </div>
                   );
                 })}
@@ -151,6 +142,10 @@ export const NavBar = () => {
                   setEmail={(inputEmail) => setEmail(inputEmail)}
                   address={address}
                   setAddress={(inputAddress) => setAddress(inputAddress)}
+                  city={city}
+                  setCity={(inputCity) => setCity(inputCity)}
+                  country={country}
+                  setCountry={(inputCountry) => setCountry(inputCountry)}
                 />
               </>
             )}

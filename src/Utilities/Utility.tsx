@@ -24,6 +24,8 @@ export const UsersDatabase = [
     surname: "Brown",
     email: "john.brown@gmail.co.uk",
     address: "57 Kingston Hill",
+    city: "London",
+    country: "United Kingdom",
   },
   {
     id: uuidv4(),
@@ -31,6 +33,8 @@ export const UsersDatabase = [
     surname: "Martini",
     email: "radio.martini@gmail.com",
     address: "Lungomare Leonardo Da Vinci, 8",
+    city: "Milan",
+    country: "Italy",
   },
   {
     id: uuidv4(),
@@ -38,5 +42,7 @@ export const UsersDatabase = [
     surname: "Boyer",
     email: "margarette.boyer@gmail.com",
     address: "2370 Dunwin Dr",
+    city: "Dallas",
+    country: "United States",
   },
 ];

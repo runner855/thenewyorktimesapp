@@ -1,12 +1,7 @@
-import React, { useState } from "react";
-import { UsersDatabase } from "../../Utilities/Utility";
+import React, { useState, useEffect } from "react";
 import "../AccountDetails/AccountDetails.css";
-import { UserDataStructureProps } from "../../ Types/Apptypes";
-import { validateHeaderName } from "http";
-
-type DetailsProps = {
-  filteredEmployees: [];
-};
+import { UserProps } from "../../ Types/Apptypes";
+import { UsersDatabase } from "../../Utilities/Utility";
 
 export const AccountDetails = () => {
   // const [filteredEmployees, setFilteredEmployees] = useState(UsersDatabase);
@@ -22,6 +17,7 @@ export const AccountDetails = () => {
   return (
     <>
       <div>Account Details</div>
+
       {/* <div className="account_details_main_container">
         <select onChange={(e: any) => filterByDepartment(e.target.value)}>
           <option defaultValue="">Select department</option>

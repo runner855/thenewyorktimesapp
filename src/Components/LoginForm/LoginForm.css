@@ -2,8 +2,14 @@
   margin: 1em 0em 1em 0em;
 }
 
+.nyt_logo {
+  width: 50%;
+}
+
 .name,
-.surname {
+.surname,
+.city,
+.country {
   margin: 1em 0em 1em 0em;
 }
 

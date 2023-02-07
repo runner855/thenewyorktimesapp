@@ -42,10 +42,26 @@ export interface MultimediaProps {
   width: number;
 }
 
-export interface UserDataStructureProps {
+export interface UserProps {
   id: string;
   name: string;
   surname: string;
   email: string;
   address: string;
+  city: string;
+  country: string;
+}
+
+export interface ArticleDetailsProps {
+  id: string;
+  copyright: string;
+  last_updated: string;
+  num_results: number;
+  abstract: string;
+  byline: string;
+  created_date: string;
+  section: string;
+  title: string;
+  item_type: string;
+  multimedia: MultimediaProps[];
 }

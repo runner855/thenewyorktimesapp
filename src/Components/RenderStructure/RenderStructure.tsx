@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../RenderStructure/RenderStructure.css";
-import { ArticlesProps } from "../../ Types/Apptypes";
+import {
+  ArticleDetailsProps,
+  ArticlesProps,
+  UserProps,
+} from "../../ Types/Apptypes";
 import { useNavigate, useParams } from "react-router-dom";
+import { ArticleDetails } from "../ArticleDetails/ArticleDetails";
 
 type LayoutProps = {
   article: ArticlesProps[] | undefined;
 };
 
 export const RenderStructure = ({ article }: LayoutProps) => {
+  const [articleDetails, setArticleDetails] = useState<string | undefined>();
+  const [articleClicked, setArticleClicked] = useState<boolean>(false);
+  const [filteredArticle, setFilteredArticle] = useState(article);
+
   const navigate = useNavigate();
   const params = useParams();
+
+  const filterByArticle = (title: string) => {
+    setFilteredArticle(
+      article &&
+        article.filter(
+          (selectedArticle) => `${selectedArticle.title}` === title
+        )
+    );
+  };
+
+  const art = Array.from(
+    new Set(
+      article && article.map((selectedArticle) => `${selectedArticle.title}`)
+    )
+  );
 
   return (
     <div className="container">
@@ -29,7 +53,7 @@ export const RenderStructure = ({ article }: LayoutProps) => {
                   <div className="article_content">{item.abstract}</div>
                   <div className="article_author">{item.byline}</div>
                 </div>
-                {/* <div className="image_container">
+                <div className="image_container">
                   <img
                     className="article_image"
                     src={item.multimedia[0].url}
@@ -38,7 +62,7 @@ export const RenderStructure = ({ article }: LayoutProps) => {
                   <div className="image_caption">
                     {item.multimedia[0].caption}
                   </div>
-                </div> */}
+                </div>
               </div>
             );
           })}
